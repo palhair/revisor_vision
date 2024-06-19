@@ -41,7 +41,8 @@ export const usersSlice = createSlice({
 });
 
 export const fetchUsers = createAsyncThunk('users/fetchStatus', async () => {
-	return getUsers();
+	const users = await getUsers();
+	return users;
 });
 
 export const { setUsersState, resetUsersState } = usersSlice.actions;

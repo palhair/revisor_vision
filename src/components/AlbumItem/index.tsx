@@ -2,12 +2,13 @@ import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SwicthIcon from '../SwitchIcon';
 import { IAlbum } from '@/types';
+import ListPhotos from '../ListPhotos';
 
 interface IAlbumItemProps {
 	album: IAlbum;
 }
 
-const AlbumItem = async ({ album }: IAlbumItemProps) => {
+const AlbumItem = ({ album }: IAlbumItemProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {}, []);
@@ -28,10 +29,10 @@ const AlbumItem = async ({ album }: IAlbumItemProps) => {
 			>
 				<SwicthIcon isOpen={isOpen} onClick={OnClickHandler} />
 				<Box>
-					<Typography variant='h1' component='h2'>
+					<Typography variant="h2" component="h3">
 						{album.title}
 					</Typography>
-					{isOpen && <Typography>list albums</Typography>}
+					{isOpen && <ListPhotos albumId={album.albumId} />}
 				</Box>
 			</Box>
 		</>

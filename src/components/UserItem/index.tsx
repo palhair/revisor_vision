@@ -27,12 +27,12 @@ const UserItem = ({ user }: IUserItemProps) => {
 			>
 				<SwicthIcon isOpen={isOpen} onClick={OnClickHandler} />
 				<Box>
-					<Typography variant='h1' component='h2'>
+					<Typography variant="h1" component="h2">
 						{user.name}
 					</Typography>
-					{isOpen && <ListAlbums userId={user.id}></ListAlbums>}
 				</Box>
 			</Box>
+			{isOpen && <ListAlbums userId={user.id}></ListAlbums>}
 		</>
 	);
 };

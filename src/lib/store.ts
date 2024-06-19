@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import tabSelectorSlice from './features/tabSelector/tabSelectorSlice';
 import userSlice from './features/user/userSlice';
 import usersSlice from './features/users/usersSlice';
+import usersAlbumsSlice from './features/albums/albumsSlice';
+import photosSlice from './features/photos/photosSlice';
 
 export const makeStore = () => {
 	return configureStore({
@@ -9,6 +11,8 @@ export const makeStore = () => {
 			tab: tabSelectorSlice,
 			user: userSlice,
 			users: usersSlice,
+			usersAlbums: usersAlbumsSlice,
+			photos: photosSlice,
 		},
 	});
 };

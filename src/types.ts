@@ -12,9 +12,13 @@ export interface IAlbum {
 	title: string;
 }
 
-export interface IPhotos {
+export interface IPhoto {
 	albumId: string;
 	id: string;
 	title: string;
 	url: string;
 }
+
+export type TUsersAlbums = Record<string, IAlbum[]>;
+
+export type TPhotos = Record<string, IPhoto[]>;

@@ -19,6 +19,11 @@ const CustomTheme = createTheme({
 			lineHeight: '28.6px',
 			fontWeight: '500',
 		},
+		h2: {
+			fontSize: '18px',
+			lineHeight: '23.4px',
+			fontWeight: '400',
+		},
 	},
 });
 

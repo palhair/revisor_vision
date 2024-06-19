@@ -1,19 +1,31 @@
-import { getAlbumsByUserId } from '@/services/almbum';
 import { Box } from '@mui/material';
 import AlbumItem from '../AlbumItem';
-import useFetchAlbum from '../hooks/useFetchAlbum';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { fetchAlbums } from '@/lib/features/albums/albumsSlice';
 
-interface IListItemProps {
+interface IListAlbumsProps {
 	userId: string;
 }
 
-const ListAlbums = async ({ userId }: IListItemProps) => {
-	const albums = await useFetchAlbum(userId);
+const ListAlbums = ({ userId }: IListAlbumsProps) => {
+	const dispatch = useAppDispatch();
+	const albums = useAppSelector((state) => state.usersAlbums.usersAlbums);
+	const userAlbums = albums[userId];
+
+	if (!albums.hasOwnProperty(userId)) {
+		dispatch(fetchAlbums(userId));
+	}
+
 	return (
-		<Box>
-			{albums.map((album) => {
-				return <AlbumItem album={album} key={album.albumId} />;
-			})}
+		<Box
+			sx={{
+				paddingLeft: '56px',
+			}}
+		>
+			{userAlbums &&
+				userAlbums.map((album) => {
+					return <AlbumItem album={album} key={album.albumId} />;
+				})}
 		</Box>
 	);
 };

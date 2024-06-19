@@ -7,3 +7,4 @@ export * from './Content';
 export * from './SwitchIcon';
 export * from './AlbumItem';
 export * from './ListAlbums';
+export * from './ListPhotos';
