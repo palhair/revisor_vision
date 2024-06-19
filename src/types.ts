@@ -3,9 +3,10 @@ export interface IUser {
 	name: string;
 	username: string;
 	email: string;
+	albums?: IAlbum[];
 }
 
-export interface IAlbums {
+export interface IAlbum {
 	albumId: string;
 	userId: string;
 	title: string;
