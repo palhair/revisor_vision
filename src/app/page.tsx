@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import styles from './page.module.css';
 import AlbumsApi from '@/api/albums';
-import { Box, Button, Container, ThemeProvider } from '@mui/material';
-import CustomTheme from '@/theme/customTheme';
-import StyledToggleButtons from '@/components/ToggleButtons';
+import { Container } from '@mui/material';
+
+import ToggleButtons from '@/components/ToggleButtons';
+import { useAppSelector } from '@/lib/hooks';
+import Content from '@/components/Content';
 const albumsApi = new AlbumsApi();
 
 export default async function Home() {
@@ -11,18 +12,18 @@ export default async function Home() {
 	const res = await albumsApi.getAlbums('9f2483a8-69a1-4f90-9160-ec291ed32fdf');
 
 	return (
-		<ThemeProvider theme={CustomTheme}>
-			<main className={styles.main}>
-				<Container
-					sx={{
-						width: '744px',
-						display: 'flex',
-						padding: '0',
-					}}
-				>
-					<StyledToggleButtons />
-				</Container>
-			</main>
-		</ThemeProvider>
+		<main className={styles.main}>
+			<Container
+				sx={{
+					width: '744px',
+					display: 'flex',
+					padding: '0',
+					flexDirection: 'column',
+				}}
+			>
+				<ToggleButtons />
+				<Content />
+			</Container>
+		</main>
 	);
 }

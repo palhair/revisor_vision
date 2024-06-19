@@ -20,6 +20,8 @@ export async function makeRequest<T>(url: string | URL, options?: Options) {
 
 	return fetch(url, {
 		method: options?.body ? 'POST' : 'GET',
+		credentials: 'include',
+		mode: 'cors',
 		...options,
 		body: options?.body && JSON.stringify(options?.body),
 		headers: { ...headers, ...(options?.headers || {}) },

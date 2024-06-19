@@ -1,7 +1,10 @@
 'use client';
 import React from 'react';
-import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps, ToggleButtonProps, styled } from '@mui/material';
+import { ToggleButtonGroup, ToggleButtonGroupProps, styled } from '@mui/material';
 import StyledToggleButton from '../CustomToggleButton';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { setStoreTab } from '@/lib/features/tabSelector/tabSelectorSlice';
+import { fetchUser } from '@/lib/features/user/userSlice';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>(({ theme }) => ({
 	display: 'flex',
@@ -14,11 +17,18 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps
 	},
 }));
 
-const ToggleButtons = () => {
-	const [tab, setTab] = React.useState('catalog');
+export type TTabName = 'catalog' | 'favorites';
 
-	const handleAlignment = (event: React.MouseEvent<HTMLElement>, newTab: string) => {
+const ToggleButtons = () => {
+	const dispatch = useAppDispatch();
+	const currentTab = useAppSelector((state) => state.tab.tab);
+	const [tab, setTab] = React.useState(currentTab);
+
+	const handleAlignment = (event: React.MouseEvent<HTMLElement>, newTab: TTabName) => {
 		setTab(newTab);
+
+		dispatch(setStoreTab(newTab));
+		dispatch(fetchUser('6a62228f-4873-43a4-8a79-0fda55f5e089'));
 	};
 
 	return (

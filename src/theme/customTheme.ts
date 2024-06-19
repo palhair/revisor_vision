@@ -13,6 +13,13 @@ const CustomTheme = createTheme({
 			main: '#FFAF37',
 		},
 	},
+	typography: {
+		h1: {
+			fontSize: '22px',
+			lineHeight: '28.6px',
+			fontWeight: '500',
+		},
+	},
 });
 
 export default CustomTheme;
