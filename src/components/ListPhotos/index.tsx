@@ -1,30 +1,54 @@
 import { fetchPhotos } from '@/lib/features/photos/photosSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Box, Typography } from '@mui/material';
+import PhotoItem from '../PhotoItem';
+import { IPhoto } from '@/types';
 
 interface IListPhotos {
-	albumId: string;
+	albumOrId: string | IPhoto[];
+	withTitle?: boolean;
 }
 
-const ListPhotos = ({ albumId }: IListPhotos) => {
+const ListPhotos = ({ albumOrId, withTitle = false }: IListPhotos) => {
 	const dispatch = useAppDispatch();
-	const photos = useAppSelector((state) => state.photos.photos);
-	const albumPhotos = photos[albumId];
+	const photosFromStore = useAppSelector((state) => state.photos.photos);
+	let photos: IPhoto[];
 
-	if (!photos.hasOwnProperty(albumId)) {
-		dispatch(fetchPhotos(albumId));
+	if (typeof albumOrId == 'string') {
+		if (!photosFromStore.hasOwnProperty(albumOrId)) {
+			dispatch(fetchPhotos(albumOrId));
+		}
+		photos = photosFromStore[albumOrId];
+	} else {
+		photos = albumOrId;
 	}
 
 	return (
 		<Box
 			sx={{
-				paddingLeft: '112px',
+				display: 'flex',
+				justifyContent: 'center',
+				padding: '0',
 			}}
 		>
-			{albumPhotos &&
-				albumPhotos.map((photos) => {
-					return <Typography key={photos.id}>{photos.title}</Typography>;
-				})}
+			<Box
+				sx={{
+					display: 'flex',
+					width: '534px',
+					flexWrap: 'wrap',
+					gap: '42px',
+				}}
+			>
+				{photos &&
+					photos.map((photo) => {
+						return (
+							<Box key={photo.id} sx={{ display: 'flex', flexDirection: 'column', width: '150px', gap: '12px' }}>
+								<PhotoItem photo={photo} />
+								{withTitle && <Typography variant='subtitle1'>{photo.title}</Typography>}
+							</Box>
+						);
+					})}
+			</Box>
 		</Box>
 	);
 };

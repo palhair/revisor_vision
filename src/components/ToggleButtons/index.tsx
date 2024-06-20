@@ -4,7 +4,6 @@ import { ToggleButtonGroup, ToggleButtonGroupProps, styled } from '@mui/material
 import StyledToggleButton from '../CustomToggleButton';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { setStoreTab } from '@/lib/features/tabSelector/tabSelectorSlice';
-import { fetchUser } from '@/lib/features/user/userSlice';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>(({ theme }) => ({
 	display: 'flex',
@@ -24,18 +23,17 @@ const ToggleButtons = () => {
 	const currentTab = useAppSelector((state) => state.tab.tab);
 	const [tab, setTab] = React.useState(currentTab);
 
-	const handleAlignment = (event: React.MouseEvent<HTMLElement>, newTab: TTabName) => {
+	const handleChange = (event: React.MouseEvent<HTMLElement>, newTab: TTabName) => {
 		setTab(newTab);
 
 		dispatch(setStoreTab(newTab));
-		dispatch(fetchUser('6a62228f-4873-43a4-8a79-0fda55f5e089'));
 	};
 
 	return (
 		<StyledToggleButtonGroup
 			value={tab}
 			exclusive
-			onChange={handleAlignment}
+			onChange={handleChange}
 			aria-label='text alignment'
 			sx={{
 				width: '100%',

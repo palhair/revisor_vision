@@ -17,11 +17,7 @@ const ListAlbums = ({ userId }: IListAlbumsProps) => {
 	}
 
 	return (
-		<Box
-			sx={{
-				paddingLeft: '56px',
-			}}
-		>
+		<Box>
 			{userAlbums &&
 				userAlbums.map((album) => {
 					return <AlbumItem album={album} key={album.albumId} />;

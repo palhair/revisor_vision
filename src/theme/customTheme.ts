@@ -24,6 +24,12 @@ const CustomTheme = createTheme({
 			lineHeight: '23.4px',
 			fontWeight: '400',
 		},
+		subtitle1: {
+			fontSize: '14px',
+			lineHeight: '21px',
+			fontWeight: '400',
+			color: '#787878',
+		},
 	},
 });
 
