@@ -13,7 +13,7 @@ const Catalog = () => {
 	const users = useAppSelector((state) => state.users.users);
 	useEffect(() => {
 		dispatch(fetchUsers());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<Box sx={style}>
