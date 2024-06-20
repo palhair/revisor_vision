@@ -10,6 +10,7 @@ const getAlbumsByUserId = async (userId: string) => {
 };
 
 const getUsersAlbums = async () => {
+	//для загрузки всех альбомов всех пользователей
 	const users = await getUsers();
 	const usersAlbums: TUsersAlbums = {};
 

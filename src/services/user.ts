@@ -11,10 +11,7 @@ const getUserByID = async (data: string) => {
 const getUsers = async () => {
 	try {
 		const response = await userApi.getUsers();
-		// for (let i = 0; i < response.length; i++) {
-		// 	const albums = await getAlbumsByUserId(response[i].id);
-		// 	response[i].albums = albums;
-		// }
+
 		return response;
 	} catch (e) {
 		console.log(e);

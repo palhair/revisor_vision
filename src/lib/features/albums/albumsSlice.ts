@@ -34,7 +34,7 @@ export const usersAlbumsSlice = createSlice({
 	},
 });
 
-export const fetchAlbums = createAsyncThunk('usersAlbums/fetchStaus', async (userId: string) => {
+export const fetchAlbums = createAsyncThunk('usersAlbums/fetchStatus', async (userId: string) => {
 	const albums = await getAlbumsByUserId(userId);
 	return { userId, albums };
 });
